@@ -426,7 +426,8 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
       /// it means we should not have any smoothness then we face with
       /// the sharped corners line
       final smoothness = barData.isCurved ? barData.curveSmoothness : 0.0;
-      temp = ((next - previous) / 2) * smoothness;
+      if (barData.curveType == CurveType.cubic) {
+        temp = ((next - previous) / 2) * smoothness;
 
       if (barData.preventCurveOverShooting) {
         if ((next - current).dy <= barData.preventCurveOvershootingThreshold ||
@@ -452,8 +453,18 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
         current.dx,
         current.dy,
       );
-    }
 
+    } else if (barData.curveType == CurveType.quadratic) {
+        final nextPoint = (current + next) / 2;
+
+        path.quadraticBezierTo(
+          current.dx,
+          current.dy,
+          nextPoint.dx,
+          nextPoint.dy,
+        );
+      }
+    }
     return path;
   }
 

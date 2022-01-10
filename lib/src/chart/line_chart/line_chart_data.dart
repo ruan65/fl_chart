@@ -260,6 +260,9 @@ class LineChartBarData with EquatableMixin {
   /// Holds data for representing a Step Line Chart, and works only if [isStepChart] is true.
   final LineChartStepData lineChartStepData;
 
+  /// Determines type of curve (quadratic or cubic).
+  final CurveType curveType;
+
   /// [BarChart] draws some lines and overlaps them in the chart's view,
   /// You can have multiple lines by splitting them,
   /// put a [FlSpot.nullSpot] between each section.
@@ -320,6 +323,7 @@ class LineChartBarData with EquatableMixin {
     Shadow? shadow,
     bool? isStepLineChart,
     LineChartStepData? lineChartStepData,
+    CurveType? curveType,
   })  : spots = spots ?? const [],
         show = show ?? true,
         colors = colors ?? const [Colors.redAccent],
@@ -339,7 +343,8 @@ class LineChartBarData with EquatableMixin {
         dashArray = dashArray,
         shadow = shadow ?? const Shadow(color: Colors.transparent),
         isStepLineChart = isStepLineChart ?? false,
-        lineChartStepData = lineChartStepData ?? LineChartStepData();
+        lineChartStepData = lineChartStepData ?? LineChartStepData(),
+        curveType = curveType ?? CurveType.cubic;
 
   /// Lerps a [LineChartBarData] based on [t] value, check [Tween.lerp].
   static LineChartBarData lerp(LineChartBarData a, LineChartBarData b, double t) {
@@ -1745,4 +1750,9 @@ class LineChartDataTween extends Tween<LineChartData> {
   /// Lerps a [LineChartData] based on [t] value, check [Tween.lerp].
   @override
   LineChartData lerp(double t) => begin!.lerp(begin!, end!, t);
+}
+
+enum CurveType {
+  quadratic,
+  cubic,
 }
