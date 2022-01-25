@@ -370,6 +370,7 @@ class LineChartBarData with EquatableMixin {
       shadow: Shadow.lerp(a.shadow, b.shadow, t),
       isStepLineChart: b.isStepLineChart,
       lineChartStepData: LineChartStepData.lerp(a.lineChartStepData, b.lineChartStepData, t),
+      curveType: b.curveType,
     );
   }
 
@@ -396,6 +397,7 @@ class LineChartBarData with EquatableMixin {
     Shadow? shadow,
     bool? isStepLineChart,
     LineChartStepData? lineChartStepData,
+    CurveType? curveType,
   }) {
     return LineChartBarData(
       spots: spots ?? this.spots,
@@ -419,6 +421,7 @@ class LineChartBarData with EquatableMixin {
       shadow: shadow ?? this.shadow,
       isStepLineChart: isStepLineChart ?? this.isStepLineChart,
       lineChartStepData: lineChartStepData ?? this.lineChartStepData,
+      curveType: curveType ?? this.curveType,
     );
   }
 
