@@ -270,6 +270,7 @@ class SideTitles with EquatableMixin {
   final CheckToShowTitle checkToShowTitle;
   final bool alignRightTitlesToRight;
   final bool alignLeftTitlesToLeft;
+  final double? initialValue;
 
   /// It draws some title on all axis, per each axis value,
   /// [showTitles] determines showing or hiding this side,
@@ -304,6 +305,7 @@ class SideTitles with EquatableMixin {
     CheckToShowTitle? checkToShowTitle,
     bool? alignRightTitlesToRight,
     bool? alignLeftTitlesToLeft,
+    this.initialValue,
   })  : showTitles = showTitles ?? false,
         getTitles = getTitles ?? defaultGetTitle,
         reservedSize = reservedSize ?? 22,
@@ -332,6 +334,7 @@ class SideTitles with EquatableMixin {
       interval: lerpDouble(a.interval, b.interval, t),
       rotateAngle: lerpDouble(a.rotateAngle, b.rotateAngle, t),
       checkToShowTitle: b.checkToShowTitle,
+      initialValue: b.initialValue,
     );
   }
 
@@ -346,6 +349,7 @@ class SideTitles with EquatableMixin {
         interval,
         rotateAngle,
         checkToShowTitle,
+        initialValue,
       ];
 }
 

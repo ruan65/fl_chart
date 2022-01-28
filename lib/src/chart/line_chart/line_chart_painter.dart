@@ -1020,7 +1020,7 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
     final bottomInterval = bottomTitles.interval ??
         getEfficientInterval(viewSize.width, data.horizontalDiff);
     if (bottomTitles.showTitles) {
-      var horizontalSeek = data.minX;
+      var horizontalSeek = bottomTitles.initialValue ??data.minX;
       while (horizontalSeek <= data.maxX) {
         if (bottomTitles.checkToShowTitle(data.minX, data.maxX, bottomTitles,
             bottomInterval, horizontalSeek)) {
